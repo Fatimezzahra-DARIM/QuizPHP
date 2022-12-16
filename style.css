@@ -1,0 +1,105 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+body{
+    background-color: rgb(84, 84, 231);
+}
+.start_btn{
+  
+} 
+.start{
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.quiz_box{
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Start Quiz Button Styling */
+.start_btn button {
+    font-size: 25px; 
+    font-weight: 500;
+    color: rgb(84, 84, 231);
+    padding: 15px 30px;
+    outline:none;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    cursor:pointer;
+    display: none;
+}
+.info_box{
+    width:540px;
+    background:#fff;
+    border-radius:5px;
+     display: none;
+}
+.info_box .info_title {
+    height: 60px;
+    width:100%;
+    border-bottom: 1px solid lightgray;
+    display:flex;
+    align-items: center;
+    padding: 0 150px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.info_box .info_list{
+    padding: 15px 35px;
+}
+.info_box .info_list .info{
+    margin:5px 0;
+    font-size: 17px ;
+}
+.info_box .info_list .info span {
+    font-weight: 600;
+    color:rgb(84, 84, 231);
+    
+}
+.info_box .buttons {
+    height:60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding:0 35px;
+    border-top: 1px solid lightslategray;
+}
+.info_box .buttons button{
+    margin: 0 5px;
+    height: 40px;
+    width: 100px;
+    border: 1px solid transparent ;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor:pointer;
+    transition: all 0.3s ease;
+}
+.buttons button.quit {
+    border-color: rgb(84, 84, 231);
+    color: rgb(84, 84, 231);
+}
+.buttons button.quit:hover{
+    color:#fff;
+    background: rgb(84, 84, 231);
+    }
+.buttons button.restart {
+    color:#fff;
+    background: rgb(84, 84, 231);
+}
+.buttons button.restart:hover{
+    background:rgb(237, 237, 247);
+    color: rgb(84, 84, 231);
+    border-color: rgb(84, 84, 231);
+}
