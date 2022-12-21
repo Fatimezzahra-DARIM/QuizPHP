@@ -11,18 +11,23 @@ body{
   background-color: $color1;
 }
 .start{
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+ position: absolute;
+ top:50%;
+ left:50%;
+ transform:translate(-50%,-50%);
+ box-shadow:0px 4px 8px 0 rgba(0,0,0,0.2),
+            0px 6px 20px 0 rgba(0,0,0,0.19);
+ transition: all 0.3s ease;           
+
 }
 .quiz_box{
   @extend .start;
-   flex-direction: column;
+  
 }
 .start_btn{
+     @extend .start;
   button{
-  font-size: 25px; 
+    font-size: 25px; 
     font-weight: 500;
     color:$color1;
     padding: 15px 30px;
@@ -30,15 +35,23 @@ body{
     border: none;
     border-radius: 5px;
     background: $color2;
+    width: 200px;
     cursor:pointer;
-    display: none;
+   
   }
 }
 .info_box{
+  
   width: 540px;
   background: $color2;
   border-radius: 5px;
-  display: none;
+  pointer-events: none;
+   @extend .start;
+ transform: translate(-50%,-50%) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+
   .info_title{
      height: 60px;
     width:100%;
@@ -71,6 +84,7 @@ body{
       margin: 0 5px;
     height: 40px;
     width: 100px;
+    outline: none;
     border: 1px solid transparent ;
     border-radius: 5px;
     color: $color2;
@@ -82,6 +96,16 @@ body{
       
   }
 }
+%activeInfo{
+z-index: 5;
+   transform: translate(-50%,-50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+.info_box.activeInfo{
+  @extend %activeInfo;
+}
+
 .buttons{
 
   button.quit{
@@ -103,7 +127,10 @@ body{
       }
   }
   .quiz_box{
-    display: none;
+    @extend .start;
+    transform: translate(-50%,-50%) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
      width: 550px;
     height: auto;
     background: $color2;
@@ -111,7 +138,7 @@ body{
     padding: 15px;
         header{
         height: 70px;
-        width: 550px ;
+        width: 520px ;
         padding: 0 30px;
         background: #fff;
         display: flex ;
@@ -235,7 +262,11 @@ body{
                              }                                         
               }
   }
+  .quiz_box.activeQuiz{
+@extend %activeInfo;
+}
   .result_box{
+     @extend .start;
     background:$color2;
     width: 450px;
     padding: 25px 30px ;
@@ -245,6 +276,11 @@ body{
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+    transform: translate(-50%,-50%) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+   
     .icon{
     font-size:100px;
     color: $color1;
