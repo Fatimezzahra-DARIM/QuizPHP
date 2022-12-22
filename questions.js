@@ -3,7 +3,7 @@ let questions = [
   {
     numb: 1,
     question: "What does PHP stand for?",
-    answer: "Hypertext Preprocessor",
+    answer: 3,
     options: [
       "Private Home Page",
       "Private Hypertext Processor",
@@ -14,25 +14,25 @@ let questions = [
   {
     numb: 2,
     question: "In Object Oriented PHP, how to access attributes of a class?",
-    answer: "$this",
+    answer: 3,
     options: ["classe()", "return()", "$this", "attrib()"],
   },
   {
     numb: 3,
     question: "How to sort an array?",
-    answer: "sort()",
+    answer: 3,
     options: ["ascending()", "asc()", "sort()", "orderby()"],
   },
   {
     numb: 4,
     question: "The escape character is",
-    answer: "\\",
+    answer: 2,
     options: ['"', "\\", "/", "#"],
   },
   {
     numb: 5,
     question: "How to get the unique ID of a session?",
-    answer: "session_id()",
+    answer: 3,
     options: [
       "$_SESSION['ID_PHP']",
       "get_session()",
