@@ -6,6 +6,24 @@
 }
 
 /* define variables for the primary colors */
+#background-video {
+  width: 100vw;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  background-repeat: repeat;
+}
+
+#background-audio {
+  background-repeat: repeat;
+}
+
 body {
   background-color: rgb(84, 84, 231);
 }
@@ -85,7 +103,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.quiz_box.activeQuiz, .info_box.activeInfo {
+.result_box.activeResult, .quiz_box.activeQuiz, .info_box.activeInfo {
   z-index: 5;
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
@@ -261,6 +279,7 @@ body {
   padding-left: 0px;
 }
 .quiz_box footer .next_btn {
+  display: none;
   height: 40px;
   padding: 0 13px;
   font-size: 18px;

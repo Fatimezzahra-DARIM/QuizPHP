@@ -7,6 +7,22 @@
 /* define variables for the primary colors */
 $color1:rgb(84, 84, 231);
 $color2:#fff;
+#background-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  background-repeat: repeat;
+}
+#background-audio{
+  background-repeat: repeat;
+  // display: none;  
+}
 body{
   background-color: $color1;
 }
@@ -281,6 +297,7 @@ z-index: 5;
                     padding-left: 0px ;
                                 }  
               .next_btn{
+                    display: none;
                     height:40px;
                     padding:0 13px;
                     font-size: 18px;
@@ -299,7 +316,10 @@ z-index: 5;
   }
   .quiz_box.activeQuiz{
 @extend %activeInfo;
-}
+} 
+  .result_box.activeResult{
+    @extend %activeInfo;
+  }
   .result_box{
      @extend .start;
     background:$color2;
