@@ -20,10 +20,11 @@ exit_btn.onclick = () => {
 continue_btn.onclick = () => {
   info_box.classList.remove("activeInfo"); //Hide the info box
   quiz_box.classList.add("activeQuiz"); //Show the quiz box
-      showQuestions(0);
+      showQuestions(generateRandomQuestion());
       queCounter(1);
       startTimer(30);
       startTimerLine(0);
+      // generateRandomQuestion(0);
 };
 let que_count = 0;
 let que_numb = 1;
@@ -80,6 +81,21 @@ next_btn.onclick = () => {
     }
     
 }
+//////////////////
+
+let randomQuestion;
+function generateRandomQuestion() {
+  randomQuestion = Math.floor(Math.random() * 4);
+  if (questions.includes(randomQuestion)) {
+    generateRandomNumber();
+  } else {
+    questions.push(randomQuestion);    
+  }
+  // console.log(randomQuestion);
+  return randomQuestion;
+}
+
+///////////////////
 
 //getting questions & options from array
 function showQuestions(index) {
@@ -153,6 +169,7 @@ function queCounter(index) {
     "</p>Of<p>" +
     questions.length +
     "</p>Questions</span>";
+    console.log(questions.length);
   bottom_ques_counter.innerHTML = totalQuesCountTag;
 }
 function startTimer(time) {
@@ -218,3 +235,6 @@ function showResultBox(){
     scoreText.innerHTML = scoreTag;
   }
 }
+
+//////////////////////////////////
+
