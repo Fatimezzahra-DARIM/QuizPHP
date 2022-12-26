@@ -20,7 +20,8 @@ exit_btn.onclick = () => {
 continue_btn.onclick = () => {
   info_box.classList.remove("activeInfo"); //Hide the info box
   quiz_box.classList.add("activeQuiz"); //Show the quiz box
-      showQuestions(generateRandomQuestion());
+  showQuestions(generateRandomQuestion());
+  console.log(questions);
       queCounter(1);
       startTimer(30);
       startTimerLine(0);
@@ -42,12 +43,13 @@ const quit_quiz = result_box.querySelector(".buttons .quit");
 restart_quiz.onclick =()=>{
   quiz_box.classList.add("activeQuiz");
   result_box.classList.remove("activeResult");
-  let que_count = 0;
-  let que_numb = 1;
-  let timeValue = 30;
-  let widthValue=0;
-  let userScore= 0;
-      showQuestions(que_count);  
+  que_count = 0;
+  usedNumbers = [];
+  que_numb = 1;
+  timeValue = 30;
+  widthValue=0;
+  userScore = 0;
+      showQuestions(generateRandomQuestion());  
       queCounter(que_numb);
       clearInterval(counter);
       startTimer(timeValue);
@@ -68,7 +70,7 @@ next_btn.onclick = () => {
       que_count++;
       que_numb++;
       console.log(que_count);
-      showQuestions(que_count);  
+      showQuestions(generateRandomQuestion());  
       queCounter(que_numb);
       clearInterval(counter);
       startTimer(timeValue);
@@ -90,16 +92,31 @@ next_btn.onclick = () => {
 }
 //////////////////
 
-let randomQuestion;
+// let randomQuestion;
+// function generateRandomQuestion() {
+//   randomQuestion = Math.floor(Math.random() * 4);
+//   questions.sort(function(a, b){return Math.})
+//   if (questions.includes(randomQuestion)) {
+//     generateRandomNumber();
+//   } else {
+//     // questions.push(randomQuestion);
+//   }
+//   // console.log(randomQuestion);
+//   return randomQuestion;
+// }
+
+let usedNumbers = [];
+let randomNumber;
 function generateRandomQuestion() {
-  randomQuestion = Math.floor(Math.random() * 4);
-  if (questions.includes(randomQuestion)) {
-    generateRandomNumber();
+  randomNumber = Math.floor(Math.random() * 5);
+  console.log("randoooooom",randomNumber);
+  if (usedNumbers.includes(randomNumber)) {
+    generateRandomQuestion();
   } else {
-    // questions.push(randomQuestion);    
+    usedNumbers.push(randomNumber);
   }
-  // console.log(randomQuestion);
-  return randomQuestion;
+  return randomNumber;
+  console.log(randomNumber);
 }
 
 ///////////////////
@@ -108,7 +125,7 @@ countRandom = 1;
 function showQuestions(index) {
     const que_text = document.querySelector(".que_text");
     let que_tag =
-    "<span>" + countRandom + "." + questions[index].question + "</span>";
+      "<span>" + que_numb + "." + questions[index].question + "</span>";
     let option_tag =
       '<div class="option" data-number="1">' +
       questions[index].options[0] +
@@ -248,8 +265,7 @@ let progressDone = document.getElementById("progress-done");
 //////////////////////////////////
 function changeProgress(maxValue, finalValue) {
   progressDone.style.width = `${(maxValue * 100) / finalValue}%`;
-  progressDone.innerHTML = `${Number((maxValue * 100) / finalValue).toFixed(
-    2
-  )}%`;
+  progressDone.innerHTML = `${Number((maxValue * 100) / finalValue)
+  }%`;
 }
 
