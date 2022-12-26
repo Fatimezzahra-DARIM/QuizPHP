@@ -379,3 +379,23 @@ z-index: 5;
 ///////////////////
 /// 
 
+.progress-bar {
+  width: 100%;
+  height: 3em;
+  background-color: $color1;
+  border-radius: 10px;
+  color: $color1;
+}
+
+.progress-done{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:$color2;
+  transition: 1s ease 0.3s;
+  height:100%;
+  width:0%;
+  border-radius: 10px;
+}
+

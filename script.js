@@ -62,9 +62,12 @@ quit_quiz.onclick =()=>{
 
 //If Next Button Clicked
 next_btn.onclick = () => {
-    if (que_count < questions.length - 1) {
+  
+  if (que_count < questions.length - 1) {
+      console.log("index",que_count);
       que_count++;
       que_numb++;
+      console.log(que_count);
       showQuestions(que_count);  
       queCounter(que_numb);
       clearInterval(counter);
@@ -72,8 +75,12 @@ next_btn.onclick = () => {
       clearInterval(counterLine);
       startTimerLine(widthValue);
       next_btn.style.display ="none";
-      timeOff.textContent="Time Left";
-    } else {
+      timeOff.textContent = "Time Left";
+      changeProgress(que_count, questions.length);
+  }
+  else {
+    que_count++;
+      changeProgress(que_count, questions.length);
       clearInterval(counter);
       clearInterval(counterLine);
       console.log("Questions completed"); 
@@ -89,19 +96,19 @@ function generateRandomQuestion() {
   if (questions.includes(randomQuestion)) {
     generateRandomNumber();
   } else {
-    questions.push(randomQuestion);    
+    // questions.push(randomQuestion);    
   }
   // console.log(randomQuestion);
   return randomQuestion;
 }
 
 ///////////////////
-
+countRandom = 1;
 //getting questions & options from array
 function showQuestions(index) {
     const que_text = document.querySelector(".que_text");
     let que_tag =
-      "<span>" + questions[index].numb +"."+ questions[index].question + "</span>";
+    "<span>" + countRandom + "." + questions[index].question + "</span>";
     let option_tag =
       '<div class="option" data-number="1">' +
       questions[index].options[0] +
@@ -121,6 +128,7 @@ function showQuestions(index) {
   for (let i = 0; i < option.length; i++) {
     option[i].setAttribute("onclick", "optionSelected(this)");
   }
+  countRandom++;
 }  
 let tickIcon = '<div class="icon tick"><i class="fa fa-check"></i></div>';
 let crossIcon = '<div class="icon cross"><i class="fa-solid fa-xmark"></i></div>';
@@ -225,6 +233,7 @@ function showResultBox(){
   if( userScore > 3 ){
     let scoreTag=' <span> and congrats! You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
     scoreText.innerHTML = scoreTag;
+    console.log(questions.length);
   }
   else if( userScore > 1 ){
     let scoreTag=` <span> and nice, You got <p>${userScore}</p> out of <p>${questions.length}</p></span>`;
@@ -235,6 +244,12 @@ function showResultBox(){
     scoreText.innerHTML = scoreTag;
   }
 }
-
+let progressDone = document.getElementById("progress-done");
 //////////////////////////////////
+function changeProgress(maxValue, finalValue) {
+  progressDone.style.width = `${(maxValue * 100) / finalValue}%`;
+  progressDone.innerHTML = `${Number((maxValue * 100) / finalValue).toFixed(
+    2
+  )}%`;
+}
 
