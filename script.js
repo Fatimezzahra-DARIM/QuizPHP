@@ -8,14 +8,17 @@ const option_list = document.querySelector(".option_list");
 const timeCount = quiz_box.querySelector(".timer .time_sec");
 const timeLine = quiz_box.querySelector("header .time_line");
 const timeOff = quiz_box.querySelector("header .time_text");
+
 // If start Quiz Button Clicked
 start_btn.onclick = () => {
     info_box.classList.add("activeInfo"); //show the info box 
 }
+
 // If Exit Quiz Button Clicked
 exit_btn.onclick = () => {
   info_box.classList.remove("activeInfo"); //Hide the info box
 };
+
 // If Continue Button Clicked
 continue_btn.onclick = () => {
   info_box.classList.remove("activeInfo"); //Hide the info box
@@ -25,8 +28,8 @@ continue_btn.onclick = () => {
       queCounter(1);
       startTimer(30);
       startTimerLine(0);
-      // generateRandomQuestion(0);
 };
+
 let que_count = 0;
 let que_numb = 1;
 let counter;
@@ -89,40 +92,26 @@ next_btn.onclick = () => {
       showResultBox(); 
     }
     
-}
-//////////////////
-
-// let randomQuestion;
-// function generateRandomQuestion() {
-//   randomQuestion = Math.floor(Math.random() * 4);
-//   questions.sort(function(a, b){return Math.})
-//   if (questions.includes(randomQuestion)) {
-//     generateRandomNumber();
-//   } else {
-//     // questions.push(randomQuestion);
-//   }
-//   // console.log(randomQuestion);
-//   return randomQuestion;
-// }
-
+} 
+//Creation of function Random !!
 let usedNumbers = [];
 let randomNumber;
 function generateRandomQuestion() {
   randomNumber = Math.floor(Math.random() * 5);
-  console.log("randoooooom",randomNumber);
+  console.log("random", randomNumber);
   if (usedNumbers.includes(randomNumber)) {
     generateRandomQuestion();
   } else {
     usedNumbers.push(randomNumber);
   }
+  console.log(usedNumbers, "array");
   return randomNumber;
-  console.log(randomNumber);
 }
-
-///////////////////
-countRandom = 1;
 //getting questions & options from array
+countRandom = 1;
+let currentQUestion;
 function showQuestions(index) {
+    currentQUestion = index;
     const que_text = document.querySelector(".que_text");
     let que_tag =
       "<span>" + que_numb + "." + questions[index].question + "</span>";
@@ -147,18 +136,19 @@ function showQuestions(index) {
   }
   countRandom++;
 }  
+// Correct answer vs user Answer
 let tickIcon = '<div class="icon tick"><i class="fa fa-check"></i></div>';
 let crossIcon = '<div class="icon cross"><i class="fa-solid fa-xmark"></i></div>';
 function optionSelected(answer) {
   clearInterval(counter);
   clearInterval(counterLine);
   // startTimer(timeValue);
-  let userAns = answer.dataset['number'];
   // let userAns = answer.textContent;
-  // console.log(userAns);
-  let correctAns = questions[que_count].answer;
-  console.log(correctAns);
+  // console.log(userAns, "userAnswer");
+  // console.log(correctAns, "correctAnswer");
   // console.log(correctAns==userAns);
+  let userAns = answer.dataset["number"];
+  let correctAns = questions[currentQUestion].answer;
   let allOptions = option_list.children.length;
   if (userAns == correctAns) {
     userScore+=1;
@@ -186,6 +176,7 @@ function optionSelected(answer) {
   }
   next_btn.style.display ="block";
 }
+// function of current number of question
 function queCounter(index) {
   const bottom_ques_counter = quiz_box.querySelector(".total_que");
   let totalQuesCountTag =
@@ -213,6 +204,7 @@ function startTimer(time) {
 
       let correctAns = questions[que_count].answer;
       console.log(correctAns);
+      
       // console.log(correctAns==userAns);
       let allOptions = option_list.children.length;
 
@@ -241,7 +233,7 @@ function startTimerLine(time) {
     }
   }
 }
-//getElementsByClassName =Style
+
 function showResultBox(){
   info_box.classList.remove("activeInfo"); //hide the info box
   quiz_box.classList.remove("activeQuiz");//hide the quiz box
@@ -261,8 +253,8 @@ function showResultBox(){
     scoreText.innerHTML = scoreTag;
   }
 }
+//function of progress bar
 let progressDone = document.getElementById("progress-done");
-//////////////////////////////////
 function changeProgress(maxValue, finalValue) {
   progressDone.style.width = `${(maxValue * 100) / finalValue}%`;
   progressDone.innerHTML = `${Number((maxValue * 100) / finalValue)
